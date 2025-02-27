@@ -16,25 +16,24 @@ class UserManagerSpec extends TestCase
     private PDO $db;
 
     protected function setUp(): void
-{
-    $this->db = new PDO("mysql:host=localhost;dbname=user_management;charset=utf8", "root", "", [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-    
-    $this->db->exec("CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(191) NOT NULL,
-        email VARCHAR(191) NOT NULL UNIQUE,
-        date_added DATETIME DEFAULT CURRENT_TIMESTAMP
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
-    
-    $this->userManager = new UserManager();
-}
+    {
+        $this->db = new PDO("mysql:host=localhost;dbname=user_management;charset=utf8", "root", "", [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
+        
+        $this->db->exec("CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(191) NOT NULL,
+            email VARCHAR(191) NOT NULL UNIQUE
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
+        
+        $this->userManager = new UserManager();
+    }
 
     protected function tearDown(): void
     {
-        //$this->db->exec("DROP TABLE users");
+        // $this->db->exec("DROP TABLE users");
     }
 
     public function testAddUser(): void
