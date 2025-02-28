@@ -1,0 +1,21 @@
+{
+  "id": "97a24989-594e-4803-9582-25191cb45170",
+  "version": "2.0",
+  "name": "Eval",
+  "url": "http://localhost/exam/Exo1/src/",
+  "tests": [{
+    "id": "8a2af6c3-6e7f-4624-b3dd-7b3d6f09f10b",
+    "name": "Ajout Utilisateur",
+    "commands": []
+  }],
+  "suites": [{
+    "id": "88506750-54a8-400e-9de9-5e0cedaafc53",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["8a2af6c3-6e7f-4624-b3dd-7b3d6f09f10b"]
+  }],
+  "urls": ["http://localhost/"],
+  "plugins": []
+}

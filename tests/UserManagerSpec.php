@@ -22,10 +22,15 @@ class UserManagerSpec extends TestCase
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
         
-        $this->db->exec("CREATE TABLE IF NOT EXISTS users (
+        // Supprime la table existante si elle existe
+        $this->db->exec("DROP TABLE IF EXISTS users");
+    
+        // Crée la table avec la structure attendue
+        $this->db->exec("CREATE TABLE users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(191) NOT NULL,
-            email VARCHAR(191) NOT NULL UNIQUE
+            email VARCHAR(191) NOT NULL UNIQUE,
+            date_added DATETIME DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
         
         $this->userManager = new UserManager();

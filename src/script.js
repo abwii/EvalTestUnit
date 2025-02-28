@@ -5,17 +5,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function fetchUsers() {
         fetch("api.php")
-            .then(response => response.json())
-            .then(users => {
+            .then((response) => response.json())
+            .then((users) => {
                 userList.innerHTML = "";
-                users.forEach(user => {
+                users.forEach((user) => {
                     const li = document.createElement("li");
-                    li.innerHTML = `${user.name} (${user.email})
-                        <button onclick="editUser(${user.id}, '${user.name}', '${user.email}')">✏️</button>
-                        <button onclick="deleteUser(${user.id})">❌</button>`;
+                    const dateAdded = user.date_added ? new Date(user.date_added).toLocaleString() : "Non définie";
+                    li.innerHTML = `${user.name} (${user.email}) - Ajouté le : ${dateAdded}
+                                    <button onclick="editUser(${user.id}, '${user.name}', '${user.email}', '${user.date_added}')">✏️</button>
+                                    <button onclick="deleteUser(${user.id})">❌</button>`;
                     userList.appendChild(li);
                 });
-            });
+            })
+            .catch((error) => console.error("Erreur lors du fetch des utilisateurs :", error));
     }
 
     userForm.addEventListener("submit", function (e) {
